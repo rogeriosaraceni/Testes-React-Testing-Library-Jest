@@ -164,4 +164,20 @@ describe('Component: Posts', () => {
       expect(screen.getByText(mockNewPostsData.title)).toBeInTheDocument();
       expect(screen.getByText(/et iusto quis pariatur/i)).toBeInTheDocument();
    });
+
+   
+   //-------------------------------------------------------
+   // Teste 6: Metodo fetch
+   //
+   //-------------------------------------------------------
+   it('testar se o metodo fetch está sendo chamado quando o component é renderizado', async () =>{
+      render(<Posts />);
+
+      expect(window.fetch).toHaveBeenCalledWith(
+         'https://jsonplaceholder.typicode.com/posts'
+      )
+
+      // abre o form
+      await waitFor(() => fireEvent.click(screen.getByText('Add New Post')));
+   });
 });
